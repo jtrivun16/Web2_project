@@ -1,12 +1,18 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using NETCore.MailKit.Core;
 using ProjekatWeb2.Infrastructure;
-using System.Text.Json.Serialization;
+using ProjekatWeb2.Infrastructure.Configurations;
+using ProjekatWeb2.Interfaces;
+using ProjekatWeb2.Mapping;
+using ProjekatWeb2.Repository;
+using ProjekatWeb2.Repository.Interfaces;
+using ProjekatWeb2.Services;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace ProjekatWeb2
 {
@@ -57,7 +63,7 @@ namespace ProjekatWeb2
 
             //tokeni
             //Dodajemo semu autentifikacije i podesavamo da se radi o JWT beareru
-            /*services.AddAuthentication(opt => {
+            services.AddAuthentication(opt => {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
@@ -73,10 +79,10 @@ namespace ProjekatWeb2
                     ClockSkew = TimeSpan.Zero, //ovo provjerava da li je isteklo vazenje tokena
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]))
                 };
-            });*/
+            });
 
             //mehanizam kojim server specificira kojim domenima dozvoljava da ga kontaktiraju
-           /* services.AddCors(options =>
+            services.AddCors(options =>
             {
                 var reactApp = Configuration["ReactApp"];
                 options.AddPolicy(name: _cors, builder =>
@@ -86,13 +92,13 @@ namespace ProjekatWeb2
                            .AllowAnyMethod()
                            .AllowCredentials();
                 });
-            });*/
+            });
 
 
             //registracija db contexta u kontejneru zavisnosti, njegov zivotni vek je Scoped
             services.AddDbContext<OnlineProdavnicaDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OnlineProdavnicaDB")));
 
-            /*services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IKorisnikRepozitorijum, KorisnikRepozitorijum>();
             services.AddScoped<IKorisnikService, KorisnikService>();
             services.AddScoped<IArtikalRepozitorijum, ArtikalRepozitorijum>();
@@ -100,17 +106,17 @@ namespace ProjekatWeb2
             services.AddScoped<IPorudzbinaRepozitorijum, PorudzbinaRepozitorijum>();
             services.AddScoped<IPorudzbinaService, PorudzbinaService>();
             services.AddScoped<IElementPorudzbineRepozitorijum, ElementPorudzbineRepozitorijum>();
-            services.AddScoped<IEmailService, EmailService>();*/
+            services.AddScoped<IEmailService, EmailService>();
 
             //dodavanje za konverziju enumeracija, sa fronta saljem enumeraciju kao string, on je konvertuje ispravno
-            /*services.AddControllers().AddJsonOptions(x =>
+            services.AddControllers().AddJsonOptions(x =>
             {
                 x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 x.JsonSerializerOptions.IgnoreNullValues = true;
-            });*/
+            });
 
             //Registracija mapera u kontejneru, zivotni vek singleton
-            /*var mapperConfig = new MapperConfiguration(mc =>
+            var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
             });
@@ -121,7 +127,7 @@ namespace ProjekatWeb2
             var emailConfig = Configuration
                 .GetSection("EmailConfiguration")
                 .Get<EmailConfiguration>();
-            services.AddSingleton(emailConfig);*/
+            services.AddSingleton(emailConfig);
 
         }
 
