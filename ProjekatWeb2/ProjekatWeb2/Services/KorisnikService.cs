@@ -70,7 +70,7 @@ namespace ProjekatWeb2.Services
                 SymmetricSecurityKey secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey.Value));
                 SigningCredentials signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 JwtSecurityToken tokenOptions = new JwtSecurityToken(
-                    issuer: "http://localhost:7273",
+                    issuer: "http://localhost:7123",
                     claims: claims,
                     expires: DateTime.Now.AddMinutes(50),
                     signingCredentials: signInCredentials
@@ -137,7 +137,7 @@ namespace ProjekatWeb2.Services
             SymmetricSecurityKey secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey.Value));
             SigningCredentials signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
             JwtSecurityToken tokenOptions = new JwtSecurityToken(
-                issuer: "http://localhost:7273",
+                issuer: "http://localhost:7123",
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(50),
                 signingCredentials: signInCredentials
@@ -315,7 +315,7 @@ namespace ProjekatWeb2.Services
             SymmetricSecurityKey secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey.Value));
             SigningCredentials signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
             JwtSecurityToken tokenOptions = new JwtSecurityToken(
-                issuer: "http://localhost:7273",
+                issuer: "http://localhost:7123",
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(50),
                 signingCredentials: signInCredentials
