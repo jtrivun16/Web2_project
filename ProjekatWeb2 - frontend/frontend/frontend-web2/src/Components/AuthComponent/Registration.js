@@ -40,7 +40,7 @@ const Registration = ({handleKorisnikInfo}) => {
   gapi.load("client:auth2", () => {
     gapi.client.init({
       clientId:
-        "499389954872-f3pheoj58rf46vvq8reuglnsq77llga5.apps.googleusercontent.com",
+        "224728975216-aurb75tsuutqc47oorvq5s7ormh6663g.apps.googleusercontent.com",
       plugin_name: "chat",
     });
   });
@@ -55,7 +55,7 @@ const Registration = ({handleKorisnikInfo}) => {
     const [tipKorisnika, setTipKorisnika] = useState('Kupac');
     const [adresa, setAdresa] = useState('')
     const [statusVerifikacije, setStatusVerifikacije] = useState('Prihvacen');
-    const [cijenaDostave, setCijenaDostave] = useState(0);
+    const [cenaDostave, setCenaDostave] = useState(0);
     const [slika, setSlika] = useState(imageUrl);
 
     const navigate = useNavigate();
@@ -69,7 +69,7 @@ const Registration = ({handleKorisnikInfo}) => {
 
         if(korisnickoIme.length === 0 || email.length === 0 || lozinka.length === 0 || lozinka2.length === 0 
             || ime.length === 0 || prezime.length === 0 || datumRodjenja === null || adresa.length === 0 || lozinka !== lozinka2
-            || (cijenaDostave === 0 && tipKorisnika === 'Prodavac') || slika.length === 0){
+            || (cenaDostave === 0 && tipKorisnika === 'Prodavac') || slika.length === 0){
                 setError(true);
                 return;
             }
@@ -86,7 +86,7 @@ const Registration = ({handleKorisnikInfo}) => {
                 tipKorisnika,
                 adresa,
                 statusVerifikacije, 
-                cijenaDostave,
+                cenaDostave,
                 slika
             });
 
@@ -102,7 +102,7 @@ const Registration = ({handleKorisnikInfo}) => {
             tipKorisnika,
             adresa,
             statusVerifikacije, 
-            cijenaDostave,
+            cenaDostave,
             slika});
 
          const setInputsToEmpty = () => {
@@ -116,7 +116,7 @@ const Registration = ({handleKorisnikInfo}) => {
                 setTipKorisnika('Kupac');
                 setStatusVerifikacije('Prihvacen');
                 setAdresa('');
-                setCijenaDostave('');
+                setCenaDostave('');
         }
 
         const redirectTo = (tipKorisnika) => {
@@ -138,7 +138,7 @@ const Registration = ({handleKorisnikInfo}) => {
             sessionStorage.setItem('token', data.token)
             sessionStorage.setItem('korisnik', JSON.stringify(data.korisnikDto));
             handleKorisnikInfo(true); //prvo se postave podaci pa se re reneruje
-            alert("Uspješna registracija.");
+            alert("Uspešna registracija.");
             redirectTo(tipKorisnika);
 
         } else {
@@ -164,7 +164,7 @@ const Registration = ({handleKorisnikInfo}) => {
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('korisnik', JSON.stringify(response.korisnikDto));
         handleKorisnikInfo(true);
-        alert("Uspješno ste se prijavili preko Google naloga.");
+        alert("Uspešno ste se prijavili preko Google naloga.");
         navigate('/kupacDashboard');      
        
       } catch (error) {
@@ -182,14 +182,14 @@ const Registration = ({handleKorisnikInfo}) => {
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 0,
+              marginTop: 9,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
             }}
           >
             
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" sx={{ fontWeight: 'bold', fontSize: '2rem' }}>
              Registracija
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -310,17 +310,17 @@ const Registration = ({handleKorisnikInfo}) => {
                 </Grid> 
                 {tipKorisnika === "Prodavac" ? 
                           <Grid item xs={12}>
-                              <label>Potrebno je unijeti cijenu dostave</label>
+                              <label>Potrebno je uneti cenu dostave</label>
                               <TextField
                                       required
                                       fullWidth
-                                      name="cijenaDostave" 
-                                      placeholder="Cijena dostave"
-                                      value={cijenaDostave}
+                                      name="cenaDostave" 
+                                      placeholder="Cena dostave"
+                                      value={cenaDostave}
                                       type="number" 
-                                      onChange={(e) => setCijenaDostave(e.target.value)}
+                                      onChange={(e) => setCenaDostave(e.target.value)}
                               />
-                              {error && cijenaDostave === "" ? <div className="ui pointing red basic label">Unesite cijenu dostave</div> : null}
+                              {error && cenaDostave === "" ? <div className="ui pointing red basic label">Unesite cenu dostave</div> : null}
                           </Grid>
                               : null}
               </Grid>
@@ -328,14 +328,14 @@ const Registration = ({handleKorisnikInfo}) => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, backgroundColor: '#FF66B2', color: 'white'  }}
               >
                 Registracija
               </Button>
               <br/>
                   
               <GoogleLogin
-              clientId="499389954872-f3pheoj58rf46vvq8reuglnsq77llga5"
+              clientId="224728975216-aurb75tsuutqc47oorvq5s7ormh6663g"
               buttonText="Registruj se putem Google naloga"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}

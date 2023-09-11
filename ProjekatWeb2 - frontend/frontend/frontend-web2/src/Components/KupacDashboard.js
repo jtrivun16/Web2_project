@@ -55,14 +55,14 @@ const KupacDashboard = () => {
     getPorudzbine();
 }, [])
 
-const handleTimer = (vrijemeDostave, statusPorudzbine) => {
+const handleTimer = (vremeDostave, statusPorudzbine) => {
   if(statusPorudzbine === 'Otkazano'){
     return <td className="center aligned positive">
         /
     </td>
   }else{
     return<td className="center aligned positive">
-        <Timer targetDate={vrijemeDostave}/>
+        <Timer targetDate={vremeDostave}/>
     </td>
   }
 }
@@ -112,7 +112,7 @@ const handleOtkaziDugmeClick = async (e) => {
     const response = await OtkazivanjePorudzbine(id, token)
 
     if(response !== null){
-        //alert("Uspješno ste otkazali porudžbinu.");
+        //alert("Uspešno ste otkazali porudžbinu.");
         navigate('/kupacDashboard');
     }
 
@@ -168,9 +168,9 @@ const handleOtkaziDugmeClick = async (e) => {
     if(unetaKolicina === ""){
       setMessage({
         type: "negative",
-        content: "Morate unijeti količinu.",
+        content: "Morate uneti količinu.",
       });
-      alert("Morate unijeti količinu.")
+      alert("Morate uneti količinu.")
     }
     else if(unetaKolicina <= artikal.kolicina){ //ako je uneta kolicina, proveri da li je manja od dostupne
       //na ovaj nacin omogucavam korisniku da moze da obrise artikal
@@ -194,24 +194,24 @@ const handleOtkaziDugmeClick = async (e) => {
         });
         setMessage({
           type: "positive",
-          content: `Uspješno ste ažurirali količinu artikla ${artikal.naziv}`,
+          content: `Uspešno ste ažurirali količinu artikla ${artikal.naziv}`,
         });
-        alert(`Uspješno ste ažurirali količinu artikla ${artikal.naziv}`)
+        alert(`Uspešno ste ažurirali količinu artikla ${artikal.naziv}`)
       } else {
         //ako ne postoji onda ga dodajem
         const noviIzabraniArtikal = {
           idArtikal: idArtikal,
           kolicina: parseInt(unetaKolicina),
           naziv: artikal.naziv,
-          cijena: artikal.cijena,
-          cijenaDostave: parseInt(artikal.cijenaDostave)
+          cena: artikal.cena,
+          cenaDostave: parseInt(artikal.cenaDostave)
         };
         setIzabraniArtikli([...izabraniArtikli, noviIzabraniArtikal]);
         setMessage({
           type: "positive",
-          content: `Uspješno ste dodali artikal ${artikal.naziv} u porudžbinu`,
+          content: `Uspešno ste dodali artikal ${artikal.naziv} u porudžbinu`,
         });
-        alert(`Uspješno ste dodali artikal ${artikal.naziv} u porudžbinu`)
+        alert(`Uspešno ste dodali artikal ${artikal.naziv} u porudžbinu`)
       }
     } else {
       setMessage({
@@ -243,10 +243,10 @@ const handleOtkaziDugmeClick = async (e) => {
     {
     setMessage({
       type: "positive",
-      content: `Uspješno ste izbacili artikal ${artikal.naziv} iz porudžbine.`,
+      content: `Uspešno ste izbacili artikal ${artikal.naziv} iz porudžbine.`,
     });
     document.getElementsByName(`input ${artikal.id}`)[0].value = "";
-    alert(`Uspješno ste izbacili artikal ${artikal.naziv} iz porudžbine.`);
+    alert(`Uspešno ste izbacili artikal ${artikal.naziv} iz porudžbine.`);
   }
   
   };
@@ -283,7 +283,7 @@ const handleOtkaziDugmeClick = async (e) => {
             <Grid item xs={5}>
            <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
             
-           <Typography component="h2" variant="h6" color="primary" gutterBottom>
+           <Typography component="h2" variant="h6" color="#FF66B2" gutterBottom>
                 Dostupni artikli
             </Typography>
 
@@ -309,9 +309,9 @@ const handleOtkaziDugmeClick = async (e) => {
                       ></img>
                       <div className="content">
                         Naziv: {artikal.naziv}
-                        <div className="sub header">Cijena artikla: {artikal.cijena} dinara</div>
+                        <div className="sub header">Cena artikla: {artikal.cena} dinara</div>
                         <div className="sub header">Dostupna količina: {artikal.kolicina}</div>
-                        <div className="sub header">Cijena dostave: {artikal.cijenaDostave} dinara</div>
+                        <div className="sub header">Cena dostave: {artikal.cenaDostave} dinara</div>
                       </div>
                     
                     </TableCell>
@@ -363,7 +363,7 @@ const handleOtkaziDugmeClick = async (e) => {
             <Grid item xs={7}>
            <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
             
-           <Typography component="h2" variant="h6" color="primary" gutterBottom>
+           <Typography component="h2" variant="h6" color="#FF66B2" gutterBottom >
                 Moje prethodne porudžbine
             </Typography>
 
@@ -373,8 +373,8 @@ const handleOtkaziDugmeClick = async (e) => {
                     <TableCell><h4>Id porudžbine</h4></TableCell>
                     <TableCell><h4>Artikli u porudžbini</h4></TableCell>
                     <TableCell><h4>Adresa dostave</h4></TableCell>
-                    <TableCell><h4>Cijena porudžbine</h4></TableCell>
-                    <TableCell><h4>Vrijeme do isporuke</h4></TableCell>
+                    <TableCell><h4>Cena porudžbine</h4></TableCell>
+                    <TableCell><h4>Vreme do isporuke</h4></TableCell>
                     <TableCell><h4>Status porudžbine</h4></TableCell>
                 </TableRow>
             </TableHead>
@@ -390,12 +390,12 @@ const handleOtkaziDugmeClick = async (e) => {
                     </TableCell>
                     <TableCell>{kupcevaPorudzbina.adresaDostave}</TableCell>
                     <TableCell>
-                    {kupcevaPorudzbina.cijena} dinara
+                    {kupcevaPorudzbina.cena} dinara
                     </TableCell>
                     <TableCell>
-                        {handleTimer(kupcevaPorudzbina.vrijemeDostave, kupcevaPorudzbina.statusPorudzbine)}
+                        {handleTimer(kupcevaPorudzbina.vremeDostave, kupcevaPorudzbina.statusPorudzbine)}
                     </TableCell>
-                    {handleButtonCell(kupcevaPorudzbina.vrijemePorucivanja, kupcevaPorudzbina.id, kupcevaPorudzbina.statusPorudzbine)}
+                    {handleButtonCell(kupcevaPorudzbina.vremePorucivanja, kupcevaPorudzbina.id, kupcevaPorudzbina.statusPorudzbine)}
                     </TableRow>
                 ))}
             </TableBody>

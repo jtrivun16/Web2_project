@@ -38,7 +38,7 @@ export default function ProdavacSviArtikli() {
     const response = await DeleteArtikal(id, token);
 
     if(response !== null){
-        alert("Uspješno ste obrisali artikal.");
+        alert("Uspešno ste obrisali artikal.");
 
     }
     window.location.reload();
@@ -60,12 +60,12 @@ export default function ProdavacSviArtikli() {
             <thead>
               <tr>
                 <th>Artikal</th>
-                <th>Cijena</th>
+                <th>Cena</th>
                 <th>
                 Kolicina
                 </th>
                 <th>
-                Cijena Dostave
+                Cena Dostave
                 </th>
                 <th>Opis</th>
                 <th>Opcije</th>
@@ -88,7 +88,7 @@ export default function ProdavacSviArtikli() {
 
                   </td>
                   <td className="center aligned">
-                    <div className="sub header">{artikal.cijena} dinara</div>
+                    <div className="sub header">{artikal.cena} dinara</div>
                   </td>
                   <td className="center aligned">
                     <div className="sub header">          
@@ -97,7 +97,7 @@ export default function ProdavacSviArtikli() {
                   </td>
                   <td className="center aligned">
                   <div className="sub header">
-                          {artikal.cijenaDostave} dinara
+                          {artikal.cenaDostave} dinara
                         </div>
                   </td>
 
@@ -109,7 +109,7 @@ export default function ProdavacSviArtikli() {
                       onClick={(e) => handleClickPromeniArtikal(e)}
                     >
                       <i className="check icon"></i>
-                      Izmijeni artikal
+                      Izmeni artikal
                     </Button>{" "}
                     <br />
                     <Button

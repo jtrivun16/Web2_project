@@ -55,7 +55,7 @@ const Detalji = ({ match }) => {
                 <TableRow>                
                     <TableCell><h4>Id artikla</h4></TableCell>
                     <TableCell><h4>Naziv</h4></TableCell>
-                    <TableCell><h4>Cijena</h4></TableCell>
+                    <TableCell><h4>Cena</h4></TableCell>
                     <TableCell><h4>Opis</h4></TableCell>
                     <TableCell><h4>Fotografija</h4></TableCell>
                 </TableRow>
@@ -71,7 +71,7 @@ const Detalji = ({ match }) => {
                     {artikal.naziv}
                                         </TableCell>
                     <TableCell>
-                    {artikal.cijena} dinara
+                    {artikal.cena} dinara
                     </TableCell>
                     <TableCell>
                     {artikal.opis}

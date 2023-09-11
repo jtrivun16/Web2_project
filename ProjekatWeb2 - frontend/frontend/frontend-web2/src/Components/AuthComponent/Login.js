@@ -28,7 +28,7 @@ const Login = ({handleKorisnikInfo}) => {
   gapi.load("client:auth2", () => {
     gapi.client.init({
       clientId:
-        "499389954872-f3pheoj58rf46vvq8reuglnsq77llga5.apps.googleusercontent.com",
+        "224728975216-aurb75tsuutqc47oorvq5s7ormh6663g.apps.googleusercontent.com",
       plugin_name: "chat",
     });
   });
@@ -83,7 +83,7 @@ const Login = ({handleKorisnikInfo}) => {
             sessionStorage.setItem("korisnik", JSON.stringify(data.korisnikDto));
             const tipKorisnika = data.korisnikDto.tipKorisnika; // propertiji su mala slova
             handleKorisnikInfo(true); //prvo se postave podaci pa se re reneruje
-            alert("Uspješno logovanje.");
+            alert("Uspešno logovanje.");
             redirectTo(tipKorisnika);
         }
         else{
@@ -137,7 +137,7 @@ const Login = ({handleKorisnikInfo}) => {
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                 Log In 
+                 Ulogujte se 
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                   <TextField
@@ -168,13 +168,13 @@ const Login = ({handleKorisnikInfo}) => {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
+                    sx={{ mt: 3, mb: 2, backgroundColor: '#FF66B2', color: 'white' }}
                   >
-                    Log In
+                    Ulogujte se
                   </Button>
                   
               <GoogleLogin
-              clientId="499389954872-f3pheoj58rf46vvq8reuglnsq77llga5"
+              clientId="224728975216-aurb75tsuutqc47oorvq5s7ormh6663g"
               buttonText="Uloguj se putem Google naloga"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}

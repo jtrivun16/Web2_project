@@ -73,7 +73,7 @@ export const IzmijeniProfil = async (updatedKorisnikJSON, id, token) => {
         return updatedKorisnik;
     }catch(err){
         console.log(err);
-        alert("Nesto se desilo prilikom izmjene podataka")
+        alert("Nesto se desilo prilikom izmene podataka")
     }
 }
 

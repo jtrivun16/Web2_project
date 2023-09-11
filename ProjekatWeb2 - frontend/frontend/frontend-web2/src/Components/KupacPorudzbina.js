@@ -10,41 +10,41 @@ export default function KupacPorudzbina() {
   const [izabraniArtikli, setIzabraniArtikli] = useState(
     JSON.parse(sessionStorage.getItem("porudzbina"))
   );
-  const [cijena, setCijena] = useState("");
+  const [cena, setCena] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const ukupnaCijenaPorudzbine = () => {
-      const cijeneDostavePoProdavcima = new Map(); // Mapa za čuvanje cijena dostave po prodavcima
-      var ukupnaCijenaPorudzbine = 0;
+    const ukupnaCenaPorudzbine = () => {
+      const ceneDostavePoProdavcima = new Map(); // Mapa za čuvanje cena dostave po prodavcima
+      var ukupnaCenaPorudzbine = 0;
   
       for (let i = 0; i < izabraniArtikli.length; i++) {
         const artikal = izabraniArtikli[i];
         
-        if (cijeneDostavePoProdavcima.has(artikal.prodavacId)) {
-          // Ako postoji, dodaj cijenu dostave na već postojeću
-          cijeneDostavePoProdavcima.set(
+        if (ceneDostavePoProdavcima.has(artikal.prodavacId)) {
+          // Ako postoji, dodaj cenu dostave na već postojeću
+          ceneDostavePoProdavcima.set(
             artikal.prodavacId,
-            cijeneDostavePoProdavcima.get(artikal.prodavacId) + artikal.cijenaDostave
+            ceneDostavePoProdavcima.get(artikal.prodavacId) + artikal.cenaDostave
           );
         } else {
-          // Ako ne postoji, postavi cijenu dostave za ovog prodavca
-          cijeneDostavePoProdavcima.set(artikal.prodavacId, artikal.cijenaDostave);
+          // Ako ne postoji, postavi cenu dostave za ovog prodavca
+          ceneDostavePoProdavcima.set(artikal.prodavacId, artikal.cenaDostave);
         }
   
-        ukupnaCijenaPorudzbine += artikal.kolicina * artikal.cijena;
+        ukupnaCenaPorudzbine += artikal.kolicina * artikal.cena;
       }
   
-      // Dodaj cijene dostave za svakog prodavca na ukupnu cijenu porudžbine
-      cijeneDostavePoProdavcima.forEach((cijenaDostave) => {
-        ukupnaCijenaPorudzbine += cijenaDostave;
+      // Dodaj cene dostave za svakog prodavca na ukupnu cenu porudžbine
+      ceneDostavePoProdavcima.forEach((cenaDostave) => {
+        ukupnaCenaPorudzbine += cenaDostave;
       });
   
-      setCijena(ukupnaCijenaPorudzbine);
+      setCena(ukupnaCenaPorudzbine);
     };
   
-    ukupnaCijenaPorudzbine();
+    ukupnaCenaPorudzbine();
   }, [izabraniArtikli]);
 
   const handleSubmit = async (e) => {
@@ -74,14 +74,14 @@ export default function KupacPorudzbina() {
       adresaDostave,
       korisnikId,
       elementiPorudzbine,
-      cijena
+      cena
     });
 
     
     const data = await CreatePorudzbina(porudzbinaDto, token);
     if(data !== null){
         console.log(data);
-        alert("Vaša porudžbina je uspješno kreirana.");
+        alert("Vaša porudžbina je uspešno kreirana.");
         navigate('/kupacDashboard');
     
     } 
@@ -104,9 +104,9 @@ export default function KupacPorudzbina() {
             </div>
             <br />
             <h3 className="ui left aligned header">
-              Cijena porudžbine:
+              Cena porudžbine:
               </h3>
-               {cijena} dinara
+               {cena} dinara
             
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function KupacPorudzbina() {
           />
           {error && adresaDostave.length === 0 ? (
             <div className="ui pointing red basic label">
-              Morate unijeti adresu dostave
+              Morate uneti adresu dostave
             </div>
           ) : null}
         </div>

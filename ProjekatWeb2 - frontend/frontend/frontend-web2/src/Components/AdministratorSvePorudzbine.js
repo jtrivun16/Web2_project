@@ -44,14 +44,14 @@ const AdminSvePorudzbine = () => {
         navigate(`/detalji/${id}`);
       };
 
-    const handleTimer = (vrijemeDostave, statusPorudzbine) => {
+    const handleTimer = (vremeDostave, statusPorudzbine) => {
         if(statusPorudzbine === 'Otkazano'){
           return <td className="center aligned positive">
               Porudžbina je otkazana
           </td>
         }else{
           return<td className="center aligned positive">
-              <Timer targetDate={vrijemeDostave}/>
+              <Timer targetDate={vremeDostave}/>
           </td>
         }
       }
@@ -69,8 +69,8 @@ const AdminSvePorudzbine = () => {
                     <TableCell><h4>Id porudžbine</h4></TableCell>
                     <TableCell><h4>Artikli u porudžbini</h4></TableCell>
                     <TableCell><h4>Adresa dostave</h4></TableCell>
-                    <TableCell><h4>Cijena porudžbine</h4></TableCell>
-                    <TableCell><h4>Vrijeme do isporuke</h4></TableCell>
+                    <TableCell><h4>Cena porudžbine</h4></TableCell>
+                    <TableCell><h4>Vreme do isporuke</h4></TableCell>
                     <TableCell><h4>Status porudžbine</h4></TableCell>
                 </TableRow>
             </TableHead>
@@ -88,10 +88,10 @@ const AdminSvePorudzbine = () => {
                         {adminovaPorudzbina.adresaDostave}
                     </TableCell>
                     <TableCell>
-                        {adminovaPorudzbina.cijena} dinara
+                        {adminovaPorudzbina.cena} dinara
                     </TableCell>
                     <TableCell>
-                        {handleTimer(adminovaPorudzbina.vrijemeDostave, adminovaPorudzbina.statusPorudzbine)}
+                        {handleTimer(adminovaPorudzbina.vremeDostave, adminovaPorudzbina.statusPorudzbine)}
                     </TableCell>
                     <TableCell>
                          {adminovaPorudzbina.statusPorudzbine}            

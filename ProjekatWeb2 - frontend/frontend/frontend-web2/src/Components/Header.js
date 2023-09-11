@@ -20,14 +20,14 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
     }
 
     return (
-        <div style={{height:'50px',width:'100%', backgroundColor: '#ededed', borderBottom:'3px solid #7393B3',  borderTop:'3px solid #7393B3'}}>
+        <div style={{height:'50px',width:'100%', backgroundColor: '#ededed', borderBottom:'3px solid #FF66B2',  borderTop:'3px solid #FF66B2'}}>
             <ButtonGroup  
                  spacing="0.5rem" aria-label="spacing button group" sx={{m: 0.5}}>
             {isAuth ? null :
                 <Button
                     //className={({isActive}) => active(isActive)}
                     className='headerButton'
-                    sx={{m: 1}}
+                    sx={{m: 1, backgroundColor: '#FF66B2'}}
                     variant='contained'
                     onClick={()=>nav('login')}
                 >
@@ -39,7 +39,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
                     //className={({isActive}) => active(isActive)}
                     variant='contained'
                     className='headerButton'
-                    sx={{m: 1}}
+                    sx={{m: 1, backgroundColor: '#FF66B2'}}
                     onClick={goToRegistration}
                 >
                     Registration
@@ -51,6 +51,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
                     //className={({isActive}) => active(isActive)}
                     variant='contained'
                     className='headerButton'
+                    sx={{mt: 1, mr:2, backgroundColor: '#FF66B2'}}
                     onClick={()=>nav('kupacDashboard')}
                 >
                     Kupac Dashboard
@@ -62,6 +63,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
                 <Button
                     variant='contained'
                     className='headerButton'
+                    sx={{mt: 1, mr:2, backgroundColor: '#FF66B2'}}
                     onClick={()=>nav('profil')}
                 >
                     Profil
@@ -74,6 +76,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
             <Button 
                 variant='contained'
                 className='headerButton'
+                sx={{m: 1, backgroundColor: '#FF66B2'}}
                 onClick={()=>nav('prodavacDashboard')}
             >
                 Prodavac dashboard
@@ -84,6 +87,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
              <Button 
                 variant='contained'
                 className='headerButton'
+                sx={{m: 1, backgroundColor: '#FF66B2'}}
                 onClick={()=>nav('prodavacNoviArtikal')}
              >
                Dodaj artikal
@@ -95,6 +99,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
             <Button 
                 variant='contained'
                 className='headerButton'
+                sx={{m: 1, backgroundColor: '#FF66B2'}}
                 onClick={()=>nav('prodavacSviArtikli')}         
                 >
                     Moji artikli
@@ -106,6 +111,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
              <Button 
                 variant='contained'
                 className='headerButton'
+                sx={{m: 1, backgroundColor: '#FF66B2'}}
                 onClick={()=>nav('prodavacNovePorudzbine')}
              >
                 Nove porudžbine
@@ -116,6 +122,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
              <Button 
              variant='contained'
              className='headerButton'
+             sx={{m: 1, backgroundColor: '#FF66B2'}}
              onClick={()=>nav('prodavacPrethodnePorudzbine')}         
              >
                 Prethodne porudžbine
@@ -127,6 +134,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
             <Button 
                 variant='contained'
                 className='headerButton'
+                sx={{m: 1, backgroundColor: '#FF66B2'}}
                 onClick={()=>nav('administratorDashboard')}
             >
                 Admin dashboard
@@ -137,6 +145,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
             <Button 
                 variant='contained'
                 className='headerButton'
+                sx={{m: 1, backgroundColor: '#FF66B2'}}
                 onClick={()=>nav('verifikacija')}
             >
                 Verifikacija prodavaca
@@ -147,6 +156,7 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
             <Button 
                 variant='contained'
                 className='headerButton'
+                sx={{m: 1, backgroundColor: '#FF66B2'}}
                 onClick={()=>nav('svePorudzbineAdmin')}
             >
                 Sve porudzbine
@@ -157,10 +167,11 @@ const Header = ({isAuth, tipKorisnika, statusVerifikacije, handleLogout}) => {
             <Button
                 variant='contained'
                 className='headerButton'
+                sx={{mt: 1, backgroundColor: '#FF66B2'}}
                 onClick={handleLogout} 
                 href="/"
                 >
-                    Logout
+                    Izloguj se
              </Button> 
              : null
              }

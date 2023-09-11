@@ -3,9 +3,9 @@ export default class PregledPorudzbineModel {
         this.id = data.id;
         this.adresaDostave = data.adresaDostave;
         this.komentar = data.komentar;
-        this.vrijemePorucivanja = data.vrijemePorucivanja;
-        this.vrijemeDostave = data.vrijemeDostave;
-        this.cijena = data.cijena;
+        this.vremePorucivanja = data.vremePorucivanja;
+        this.vremeDostave = data.vremeDostave;
+        this.cena = data.cena;
         this.imenaArtikala = [];
         this.statusPorudzbine = this.statusPorudzbine;
     }

@@ -52,7 +52,7 @@ const ProdavacPrethodnePorudzbine = () => {
                     <tr>
                         <th>Id porudzbine</th>
                         <th>Adresa dostave</th>
-                        <th>Cijena porudzbine</th>
+                        <th>Cena porudzbine</th>
                         <th>Vreme ostalo do isporuke</th>
                         <th>Detalji o elementima porudzbine</th>
 
@@ -70,10 +70,10 @@ const ProdavacPrethodnePorudzbine = () => {
                                 {prodavcevaMojaPorudzbina.adresaDostave}
                             </td>
                             <td className="center aligned"> 
-                                {prodavcevaMojaPorudzbina.cijena} dinara
+                                {prodavcevaMojaPorudzbina.cena} dinara
                             </td>
                             <td>
-                                <Timer targetDate={prodavcevaMojaPorudzbina.vrijemeDostave}/>
+                                <Timer targetDate={prodavcevaMojaPorudzbina.vremeDostave}/>
                             </td>
                             <td>
                             <Button variant='contained' onClick={() => prikaziDetaljePorudzbine(prodavcevaMojaPorudzbina.id)}>Detalji</Button>

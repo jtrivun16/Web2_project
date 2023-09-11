@@ -9,7 +9,7 @@ export default function IzmijeniArtikal() {
 
   const [id, setId] = useState(0);
   const [naziv, setNaziv] = useState("");
-  const [cijena, setCijena] = useState(0);
+  const [cena, setCena] = useState(0);
   const [kolicina, setKolicina] = useState(0);
   const [opis, setOpis] = useState("");
   const [fotografija, setFotografija] = useState(productImage);
@@ -29,7 +29,7 @@ export default function IzmijeniArtikal() {
       const response = await GetArtikalById(id, sessionStorage.getItem("token"));
       if (response !== null) {
         setNaziv(response.naziv);
-        setCijena(response.cijena);
+        setCena(response.cena);
         setKolicina(response.kolicina);
         setOpis(response.opis);
         setFotografija(response.fotografija)
@@ -41,25 +41,25 @@ export default function IzmijeniArtikal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(naziv, cijena, kolicina, opis);
+    console.log(naziv, cena, kolicina, opis);
     const prodavac = JSON.parse(sessionStorage.getItem('korisnik'));
     const token = sessionStorage.getItem('token');
     const prodavacId = prodavac.id;
-    const cijenaDostave = prodavac.cijenaDostave;
+    const cenaDostave = prodavac.cenaDostave;
 
-    if(naziv.length === 0 || cijena === 0 || cijena === "" || Math.floor(kolicina) === 0 || kolicina === ""
+    if(naziv.length === 0 || cena === 0 || cena === "" || Math.floor(kolicina) === 0 || kolicina === ""
     || opis.length === 0 || fotografija.length === 0){
         setError(true);
         return;
     }
 
     const artikalDto = JSON.stringify({
-        naziv, cijena, kolicina, opis, fotografija, prodavacId, cijenaDostave
+        naziv, cena, kolicina, opis, fotografija, prodavacId, cenaDostave
     });
 
     const response = await UpdateArtikal(id, artikalDto, token);
     if(response !== null){
-      alert("Uspješno ste ažurirali artikal.");
+      alert("Uspešno ste ažurirali artikal.");
       navigate('/prodavacSviArtikli');     
     }
     else{
@@ -81,7 +81,7 @@ export default function IzmijeniArtikal() {
       {!loading && (
         <div className="card">
           <form className="ui form" onSubmit={handleSubmit}>
-            <h2 className="ui center aligned header">Izmjena artikla</h2>
+            <h2 className="ui center aligned header">Izmena artikla</h2>
             <UserImage slika={fotografija} setSlika={setFotografija}></UserImage>
               {error && fotografija.length === 0 ? (
                 <div className="ui pointing red basic label">
@@ -99,24 +99,24 @@ export default function IzmijeniArtikal() {
               />
               {error && naziv.length === 0 ? (
                 <div className="ui pointing red basic label">
-                  Morate unijeti naziv artikla
+                  Morate uneti naziv artikla
                 </div>
               ) : null}
             </div>
             <div className="two fields">
               <div className="field">
-                <label>Cijena artikla</label>
+                <label>Cena artikla</label>
                 <input
                   type="number"
                   step="any"
-                  name="cijena"
-                  value={cijena}
-                  onChange={(e) => setCijena(e.target.value)}
+                  name="cena"
+                  value={cena}
+                  onChange={(e) => setCena(e.target.value)}
                   placeholder="Cena artikla"
                 />
-                {(error && cijena === 0) || (error && cijena === "") ? (
+                {(error && cena === 0) || (error && cena === "") ? (
                   <div className="ui pointing red basic label">
-                    Morate unijeti cijenu artikla
+                    Morate uneti cenu artikla
                   </div>
                 ) : null}
               </div>
@@ -130,9 +130,9 @@ export default function IzmijeniArtikal() {
                   onChange={(e) => setKolicina(e.target.value)}
                   placeholder="Kolicina artikla"
                 />
-                {(error && Math.floor(kolicina) === 0) || ( error && cijena === "") ? (
+                {(error && Math.floor(kolicina) === 0) || ( error && cena === "") ? (
                   <div className="ui pointing red basic label">
-                    Morate unijeti kolicinu artikla
+                    Morate uneti kolicinu artikla
                   </div>
                 ) : null}
               </div>
@@ -148,12 +148,12 @@ export default function IzmijeniArtikal() {
               />
               {error && opis.length === 0 ? (
                 <div className="ui pointing red basic label">
-                  Morate unijeti opis artikla
+                  Morate uneti opis artikla
                 </div>
               ) : null}
             </div>
             <Button variant="contained" type="submit">
-              Izmijenite artikal
+              Izmenite artikal
             </Button>
           </form>
         </div>

@@ -38,7 +38,7 @@ const AdminDashboard = () => {
     return(
         <ThemeProvider theme={defaultTheme}>
             <h2 className="ui blue center aligned header">
-            Uspješno ste prijavljeni na sistem u ulozi administratora
+            Uspešno ste prijavljeni na sistem u ulozi administratora
             </h2>
             <Box sx={{ display: 'main' }}>
                 <Typography component="h2" variant="h5" color="primary">

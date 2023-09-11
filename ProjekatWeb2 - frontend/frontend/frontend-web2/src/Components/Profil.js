@@ -49,7 +49,7 @@ const Profil = () => {
     new Date(korisnik.datumRodjenja)
   );
   const [adresa, setAdresa] = useState(korisnik.adresa);
-  const [cenaDostave, setCenaDostave] = useState(korisnik.cijenaDostave);
+  const [cenaDostave, setCenaDostave] = useState(korisnik.cenaDostave);
   const [slika, setSlika] = useState(korisnik.slika);
 
   const navigate = useNavigate();
@@ -102,7 +102,7 @@ const Profil = () => {
     const data = await IzmijeniProfil(updatedKorisnikJSON, id, token)
     if (data !== null) {
       sessionStorage.setItem("korisnik", JSON.stringify(data));
-      alert("Uspješno ste izmijenili podatke.");
+      alert("Uspešno ste izmenili podatke.");
       redirectTo(tipKorisnika);
     }
   };
@@ -120,11 +120,11 @@ const Profil = () => {
             }}
           >
             
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" sx={{ marginTop: 10, fontWeight: 'bold', fontSize: '2rem' }}>
              Podaci o korisniku
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                <Grid item xs={12}>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, mb: 2 }}>
+                <Grid item xs={12} sx={{ mt: 3, mb: 2 }}>
                   <UserImage slika={slika} setSlika={setSlika}></UserImage>   
                   {error && slika.length === 0 ? <div className="ui pointing red basic label">Morate odabrati sliku</div> : null} 
                 </Grid>
@@ -177,7 +177,7 @@ const Profil = () => {
                     autoComplete="email"
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={4}>
                           <label>Datum Rodjenja</label>
                           <DatePicker 
                               showIcon
@@ -221,9 +221,9 @@ const Profil = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, backgroundColor: '#FF66B2', color: 'white'  }}
               >
-                Izmijeni
+                Izmeni
               </Button>
             </Box>
           </Box>

@@ -28,8 +28,8 @@ const DetaljiPorudzbine = () => {
 
         const response = await GetPorudzbinaById(id, sessionStorage.getItem('token'));
         if(response !== null){
-          response.vrijemeDostave = new Date(response.vrijemeDostave);
-          response.vrijemePorucivanja = new Date(response.vrijemePorucivanja);
+          response.vremeDostave = new Date(response.vremeDostave);
+          response.vremePorucivanja = new Date(response.vremePorucivanja);
           console.log(response)
           setPorudzbina(response);
           setLoading(false);
@@ -85,26 +85,26 @@ const DetaljiPorudzbine = () => {
             </div>
             <div className="field">
               <h3 className="ui blue center aligned header">
-                Datum i vrijeme poručivanja:{" "}
+                Datum i vreme poručivanja:{" "}
                 </h3>
-                {porudzbina.vrijemePorucivanja.toLocaleDateString()} u{" "}
-                {porudzbina.vrijemePorucivanja.toLocaleTimeString()}
+                {porudzbina.vremePorucivanja.toLocaleDateString()} u{" "}
+                {porudzbina.vremePorucivanja.toLocaleTimeString()}
               
             </div>
             <div className="field">
               <h3 className="ui blue center aligned header">
-                Datum i vrijeme dostave:
+                Datum i vreme dostave:
                 </h3>
-                 {porudzbina.vrijemeDostave.toLocaleDateString()} u{" "}
-                {porudzbina.vrijemeDostave.toLocaleTimeString()}
+                 {porudzbina.vremeDostave.toLocaleDateString()} u{" "}
+                {porudzbina.vremeDostave.toLocaleTimeString()}
               
             </div>
             <div className="field">
               <h3 className="ui blue center aligned header">
               
-                Cijena porudžbine: 
+                Cena porudžbine: 
                 </h3>
-                {porudzbina.cijena} dinara
+                {porudzbina.cena} dinara
             </div>
             <div className="field">
               <h3 className="ui blue center aligned header">

@@ -36,7 +36,7 @@ const AdminVerifikacija = () => {
                             id={prodavac.id} 
                             onClick={(e) => handleClick(e)}>
                             <i className="check icon"></i>
-                            Prihvati zahtjev
+                            Prihvati zahtev
                         </Button>
                         <Button
                             variant="contained"
@@ -45,7 +45,7 @@ const AdminVerifikacija = () => {
                             id={prodavac.id} 
                             onClick={(e) => handleClick(e)}>
                             <i className="x icon"></i>
-                            Odbij zahtjev
+                            Odbij zahtev
                         </Button>
                         </ButtonGroup>                         
                     </td> 

@@ -10,7 +10,7 @@ export default class KorisnikModel{
         this.datumRodjenja = data.datumRodjenja;
         this.slika = data.slika;
         this.tipKorisnika = data.tipKorisnika;
-        this.cijenaDostave = data.cijenaDostave;
+        this.cenaDostave = data.cenaDostave;
         this.verifikacijaProdavca = data.verifikacijaProdavca;
     }
 }

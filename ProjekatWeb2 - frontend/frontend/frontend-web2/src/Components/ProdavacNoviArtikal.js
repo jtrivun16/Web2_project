@@ -8,7 +8,7 @@ const ProdavacNoviArtikal = () => {
    
     const [error, setError] = useState(false);
     const [naziv, setNaziv] = useState('');
-    const [cijena, setCijena] = useState(0);
+    const [cena, setCena] = useState(0);
     const [kolicina, setKolicina] = useState(0); 
     const [opis, setOpis] = useState('');
     const [fotografija, setFotografija] = useState(productImage);
@@ -16,34 +16,34 @@ const ProdavacNoviArtikal = () => {
 
     const setInputsToEmpty = () => {
         setNaziv('');
-        setCijena(0);
+        setCena(0);
         setKolicina(0);
         setOpis('');
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(naziv, cijena, kolicina, opis);
+        console.log(naziv, cena, kolicina, opis);
         const prodavac = JSON.parse(sessionStorage.getItem('korisnik'));
         const token = sessionStorage.getItem('token');
         const prodavacId = prodavac.id;
-        const cijenaDostave = prodavac.cijenaDostave;
+        const cenaDostave = prodavac.cenaDostave;
 
-        if(naziv.length === 0 || cijena === 0 || cijena === "" || kolicina === "" || Math.floor(kolicina) === 0
+        if(naziv.length === 0 || cena === 0 || cena === "" || kolicina === "" || Math.floor(kolicina) === 0
         || opis.length === 0 || fotografija.length === 0){
             setError(true);
             return;
         }
 
         const artikalDto = JSON.stringify({
-            naziv, cijena, kolicina, opis, fotografija, prodavacId, cijenaDostave
+            naziv, cena, kolicina, opis, fotografija, prodavacId, cenaDostave
         });
 
         const data = await AddArtikal(artikalDto, token);
         if(data !== null){
             
             setInputsToEmpty();
-            alert("Artikal je uspješno dodat.")
+            alert("Artikal je uspešno dodat.")
             console.log(data)
         }else{
             setInputsToEmpty();
@@ -64,19 +64,19 @@ const ProdavacNoviArtikal = () => {
                             value={naziv}
                             onChange={(e) => setNaziv(e.target.value)}
                             />
-                    {error && naziv.length === 0 ? <div className="ui pointing red basic label">Morate unijeti naziv artikla.</div> : null}
+                    {error && naziv.length === 0 ? <div className="ui pointing red basic label">Morate uneti naziv artikla.</div> : null}
                 </div>
                 <div className="two fields">
                     <div className="field">
-                        <h4>Cijena artikla</h4>
+                        <h4>Cena artikla</h4>
                         <input  type="number" 
                                 step="any"
-                                name="cijena"
-                                value={cijena}
-                                onChange={(e) => setCijena(e.target.value)}
-                                placeholder="Cijena artikla"
+                                name="cena"
+                                value={cena}
+                                onChange={(e) => setCena(e.target.value)}
+                                placeholder="Cena artikla"
                                 />
-                        {(error && cijena === 0) || (error && cijena === "") ? <div className="ui pointing red basic label">Morate unijeti cijenu artikla.</div> : null}
+                        {(error && cena === 0) || (error && cena === "") ? <div className="ui pointing red basic label">Morate uneti cenu artikla.</div> : null}
                     </div>
                     <div className="field">
                         <h4>Količina artikla</h4>
@@ -87,7 +87,7 @@ const ProdavacNoviArtikal = () => {
                                 onChange={(e) => setKolicina(e.target.value)}
                                 placeholder="Kolicina artikla"
                         />
-                        {(error && Math.floor(kolicina) === 0) || ( error && cijena === "") ? <div className="ui pointing red basic label">Morate unijeti količinu artikla.</div> : null}
+                        {(error && Math.floor(kolicina) === 0) || ( error && cena === "") ? <div className="ui pointing red basic label">Morate uneti količinu artikla.</div> : null}
                     </div>
                 </div>
                 <div className="field">
@@ -98,7 +98,7 @@ const ProdavacNoviArtikal = () => {
                               value={opis}
                               onChange={(e) => setOpis(e.target.value)}
                     /> 
-                    {error && opis.length === 0 ? <div className="ui pointing red basic label">Morate unijeti opis artikla.</div> : null}
+                    {error && opis.length === 0 ? <div className="ui pointing red basic label">Morate uneti opis artikla.</div> : null}
                 </div>
                 <Button variant="contained" type="submit">Dodaj artikal</Button>
             </form>

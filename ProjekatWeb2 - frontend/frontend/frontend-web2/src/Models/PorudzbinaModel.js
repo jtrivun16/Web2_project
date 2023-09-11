@@ -4,9 +4,9 @@ export default class PorudzbinaModel {
         this.id = data.id;
         this.komentar = data.komentar;
         this.adresaDostave = data.adresaDostave;
-        this.cijena = data.cijena;
-        this.vrijemeDostave = data.vrijemeDostave;
-        this.vrijemePorucivanja = data.vrijemePorucivanja;
+        this.cena = data.cena;
+        this.vremeDostave = data.vremeDostave;
+        this.vremePorucivanja = data.vremePorucivanja;
         this.statusPorudzbine = data.statusPorudzbine;
         this.korisnikId = data.korisnikId;
         this.elementiPorudzbine = [];
