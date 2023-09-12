@@ -145,11 +145,11 @@ namespace ProjekatWeb2.Services
         public async Task<List<PorudzbinaDto>> GetAllPorudzbina()
         {
             List<PorudzbinaDto> porudzbineList = _mapper.Map<List<PorudzbinaDto>>(await _porudzbinaRepozitorijum.AllPorudzbine());
-            var trenutnoVrijeme = DateTime.Now;
+            var trenutnoVreme = DateTime.Now;
 
             foreach (var porudzbina in porudzbineList)
             {
-                if (porudzbina.StatusPorudzbine != StatusPorudzbine.Otkazano && porudzbina.VremeDostave < trenutnoVrijeme)
+                if (porudzbina.StatusPorudzbine != StatusPorudzbine.Otkazano && porudzbina.VremeDostave < trenutnoVreme)
                 {
                     porudzbina.StatusPorudzbine = StatusPorudzbine.Isporuceno;
                 }

@@ -21,12 +21,12 @@ import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import UserImage from '../UserImage';
-import image from "../../Images/camera1.png";
+import image from "../../Images/camera.png";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { RegisterUser } from "../../Services/KorisnikService";
 import jwt_decode from 'jwt-decode';
-import imageUrl from "../../Images/camera1.png";
+import imageUrl from "../../Images/camera.png";
 
 import {prijavaPrekoGoogle} from '../../Services/KorisnikService';
 import GoogleLogin from "react-google-login";
