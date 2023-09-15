@@ -9,7 +9,7 @@ namespace ProjekatWeb2.Infrastructure
         public DbSet<Korisnik> Korisnici { get; set; }
         public DbSet<Artikal> Artikli { get; set; }
         public DbSet<Porudzbina> Porudzbine { get; set; }
-
+        public DbSet<ElementPorudzbine>? ElementPorudzbine { get; set; }
         public OnlineProdavnicaDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -21,6 +21,6 @@ namespace ProjekatWeb2.Infrastructure
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(OnlineProdavnicaDbContext).Assembly);
         }
 
-        public DbSet<ProjekatWeb2.Models.ElementPorudzbine>? ElementPorudzbine { get; set; }
+        
     }
 }
